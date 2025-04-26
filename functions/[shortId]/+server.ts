@@ -1,17 +1,13 @@
-import { redirect } from '@sveltejs/kit';
-import type { RequestHandler } from './types';
-
-export const GET: RequestHandler = async ({ params, platform }) => {
-
+export async function onRequestGet({ params, env }: { params: { shortId: string }; env: any }) {
     const { shortId } = params;
 
-    // Get the original URL from KV
-    const originalUrl = await platform.env.URLS.get(shortId);
+    // Obter a URL original do KV
+    const originalUrl = await env.URLS.get(shortId);
 
     if (!originalUrl) {
         return new Response('URL not found', { status: 404 });
     }
 
-    // Redirect to the original URL
-    throw redirect(302, originalUrl);
-}; 
+    // Redirecionar para a URL original
+    return Response.redirect(originalUrl, 302);
+}
