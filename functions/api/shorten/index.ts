@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-export const POST = async ({ request, env }: { request: Request; env: any }) => {
+export const onRequestPost = async ({ request, env }: { request: Request; env: any }) => {
     try {
         const { url } = await request.json();
 
