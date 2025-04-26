@@ -108,7 +108,7 @@
           type="text"
           readonly
           value={shortUrl}
-          class="flex-1 px-4 py-2 text-lg border rounded-lg bg-white"
+          class="mb-4 flex-1 px-4 py-2 text-lg border rounded-lg bg-white"
         />
         <br />
         <button
