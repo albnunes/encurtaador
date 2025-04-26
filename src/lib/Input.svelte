@@ -122,6 +122,7 @@
       <br />
       {#if showQr && qrCodeDataUrl}
         <div class="mt-4 flex justify-center">
+        
           <img src={qrCodeDataUrl} alt="QR Code da URL encurtada" />
         </div>
       {/if}

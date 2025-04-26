@@ -27,7 +27,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: a
 
         let qrCodeDataUrl = "";
         if (generateQr) {
-            qrCodeDataUrl = await QRCode.toDataURL(shortUrl);
+            qrCodeDataUrl = await QRCode.toString(shortUrl);
         }
 
         return new Response(
