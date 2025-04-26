@@ -122,8 +122,13 @@
       <br />
       {#if showQr && qrCodeDataUrl}
         <div class="mt-4 flex justify-center">
-        
-          <img src={qrCodeDataUrl} alt="QR Code da URL encurtada" />
+          {#if qrCodeDataUrl.trim().startsWith("<svg")}
+            <!-- Renderiza SVG inline -->
+            {@html qrCodeDataUrl}
+          {:else}
+            <!-- Caso seja um data URL ou outro formato, usa <img> -->
+            <img src={qrCodeDataUrl} alt="QR Code da URL encurtada" />
+          {/if}
         </div>
       {/if}
     </div>
