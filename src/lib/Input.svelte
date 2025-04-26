@@ -100,6 +100,7 @@
           value={shortUrl}
           class="flex-1 px-4 py-2 text-lg border rounded-lg bg-white"
         />
+        <br />
         <button
           type="button"
           on:click={copyToClipboard}
