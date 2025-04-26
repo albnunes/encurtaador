@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import Checkbox from "./Checkbox.svelte";
 
   export let placeholder = "Cole seu link aqui...";
   export let value = "";
@@ -7,6 +8,8 @@
 
   let shortUrl = "";
   let loading = false;
+  let showQr = false;
+  let qrCodeDataUrl = "";
 
   const dispatch = createEventDispatcher<{
     input: string;
@@ -31,13 +34,14 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ url: value }),
+          body: JSON.stringify({ url: value, generateQr: showQr }),
         });
 
         const data = await response.json();
 
         if (response.ok) {
           shortUrl = data.shortUrl;
+          qrCodeDataUrl = data.qrCodeDataUrl || "";
           dispatch("submit", value);
         } else {
           error = data.error || "Erro ao encurtar URL";
@@ -82,6 +86,9 @@
     {/if}
   </div>
   <br />
+
+  <Checkbox bind:checked={showQr} label="Gerar QR Code" id="show-qr" />
+
   <button
     type="submit"
     class="mt-6 w-full bg-blue-500 text-white py-4 px-8 text-xl rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
@@ -109,6 +116,12 @@
           Copiar
         </button>
       </div>
+      <br />
+      {#if showQr && qrCodeDataUrl}
+        <div class="mt-4 flex justify-center">
+          <img src={qrCodeDataUrl} alt="QR Code da URL encurtada" />
+        </div>
+      {/if}
     </div>
   {/if}
 </form>
