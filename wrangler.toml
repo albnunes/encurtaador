@@ -1,0 +1,6 @@
+name = "encurtaador"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "encurtaador"
+id = "14a6de8cc31145b09e4cb565ee3e460a"

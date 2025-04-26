@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Link symbol (top half) -->
+  <path d="M16 4C12.6863 4 10 6.68629 10 10V12H12V10C12 7.79086 13.7909 6 16 6C18.2091 6 20 7.79086 20 10V12H22V10C22 6.68629 19.3137 4 16 4Z" fill="#2563EB"/>
+  <path d="M16 28C19.3137 28 22 25.3137 22 22V20H20V22C20 24.2091 18.2091 26 16 26C13.7909 26 12 24.2091 12 22V20H10V22C10 25.3137 12.6863 28 16 28Z" fill="#2563EB"/>
+  
+  <!-- Smile (bottom half) -->
+  <path d="M10 18C10 18 12 20 16 20C20 20 22 18 22 18" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="12" cy="14" r="1.5" fill="#2563EB"/>
+  <circle cx="20" cy="14" r="1.5" fill="#2563EB"/>
+</svg> 
