@@ -22,7 +22,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: a
         await env.encurtaador.put(shortId, url);
 
         // Return the short URL
-        const shortUrl = `${new URL(request.url).origin}/redirect/${shortId}`;
+        const shortUrl = `${new URL(request.url).origin}/${shortId}`;
 
         return new Response(JSON.stringify({ shortUrl }), { headers: { 'Content-Type': 'application/json' } });
     } catch (error) {
