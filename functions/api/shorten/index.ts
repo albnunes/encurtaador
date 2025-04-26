@@ -19,7 +19,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: a
         const shortId = nanoid(6); // 6 characters long
 
         // Store in KV
-        await env.KV_BINDING.put(shortId, url);
+        await env.encurtaador.put(shortId, url);
 
         // Return the short URL
         const shortUrl = `${new URL(request.url).origin}/redirect/${shortId}`;

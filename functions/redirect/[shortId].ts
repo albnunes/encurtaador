@@ -2,7 +2,7 @@ export async function onRequestGet({ params, env }: { params: { shortId: string 
     const { shortId } = params;
 
     // Obter a URL original do KV
-    const originalUrl = await env.KV_BINDING.get(shortId);
+    const originalUrl = await env.encurtaador.get(shortId);
 
     if (!originalUrl) {
         return new Response('URL not found', { status: 404 });
