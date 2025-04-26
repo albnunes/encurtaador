@@ -22,7 +22,7 @@ export const POST = async ({ request, env }: { request: Request; env: any }) => 
         await env.URLS.put(shortId, url);
 
         // Return the short URL
-        const shortUrl = `${new URL(request.url).origin}/${shortId}`;
+        const shortUrl = `${new URL(request.url).origin}/redirect/${shortId}`;
 
         return new Response(JSON.stringify({ shortUrl }), { headers: { 'Content-Type': 'application/json' } });
     } catch (error) {
