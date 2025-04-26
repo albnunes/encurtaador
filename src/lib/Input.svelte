@@ -87,11 +87,14 @@
   </div>
   <br />
 
-  <Checkbox bind:checked={showQr} label="Gerar QR Code" id="show-qr" />
+  <div class="mb-4">
+    <Checkbox bind:checked={showQr} label="Gerar QR Code" id="show-qr" />
+  </div>
+  <br />
 
   <button
     type="submit"
-    class="mt-6 w-full bg-blue-500 text-white py-4 px-8 text-xl rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
+    class="mt-2 w-full bg-blue-500 text-white py-4 px-8 text-xl rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
     disabled={loading}
   >
     {loading ? "Encurtando..." : "Encurtar"}
