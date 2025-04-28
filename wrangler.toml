@@ -8,5 +8,4 @@ functions = "functions"
 binding = "encurtaador"
 id = "14a6de8cc31145b09e4cb565ee3e460a"
 
-[compatibility_flags]
-flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat"]
