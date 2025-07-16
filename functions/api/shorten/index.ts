@@ -19,7 +19,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: a
             return new Response(JSON.stringify({ error: 'URL is required' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
 
-        // Validate URL
+
         try {
             new URL(url);
         } catch {
