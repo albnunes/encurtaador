@@ -7,7 +7,7 @@
   export let placeholder = 'Cole seu link aqui...';
   export let value = '';
   export let error = '';
-
+  
   let shortUrl = '';
   let loading = false;
   let qrCode = true;

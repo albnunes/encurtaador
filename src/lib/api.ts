@@ -71,10 +71,14 @@ export const authAPI = {
         return response.data;
     },
 };
-
+const addOneWeek = (date: Date): Date => {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 7);
+    return newDate;
+  };
 export const urlAPI = {
-    createUrl: async (originalUrl: string, qrCode = true): Promise<UrlResponse> => {
-        const response = await api.post('/urls', { originalUrl, qrCode });
+    createUrl: async (originalUrl: string, qrCode: boolean = true): Promise<UrlResponse> => {
+        const response = await api.post('/urls', { originalUrl, qrCode, expiresAt: addOneWeek(new Date()).toISOString() });
         return response.data;
     },
 
