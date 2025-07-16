@@ -1,47 +1,205 @@
-# Svelte + TS + Vite
+# Encurtaador - Frontend
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+Frontend moderno para o sistema de encurtamento de URLs, construído com Svelte 5 e Vite.
 
-## Recommended IDE Setup
+## 🚀 Funcionalidades
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- **Interface moderna e responsiva** com design system consistente
+- **Autenticação completa** com login e registro de usuários
+- **Encurtamento de URLs** com e sem autenticação
+- **Dashboard personalizado** para gerenciar URLs
+- **Geração de QR Codes** para URLs encurtadas
+- **Estatísticas de cliques** e histórico de URLs
+- **Interface intuitiva** com feedback visual
 
-## Need an official Svelte framework?
+## 🛠️ Tecnologias
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+- **Svelte 5** - Framework reativo
+- **TypeScript** - Tipagem estática
+- **Vite** - Build tool e dev server
+- **Axios** - Cliente HTTP
+- **QRCode** - Geração de QR codes
 
-## Technical considerations
+## 📦 Instalação
 
-**Why use this over SvelteKit?**
+1. **Instalar dependências:**
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+   ```bash
+   npm install
+   ```
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+2. **Configurar variáveis de ambiente:**
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+   ```bash
+   cp env.example .env
+   ```
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+   Edite o arquivo `.env` e configure:
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+   - `VITE_API_URL`: URL da API backend (padrão: http://localhost:3000)
 
-**Why include `.vscode/extensions.json`?**
+3. **Executar em desenvolvimento:**
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+   ```bash
+   npm run dev
+   ```
 
-**Why enable `allowJs` in the TS template?**
+4. **Build para produção:**
+   ```bash
+   npm run build
+   ```
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+## 🏗️ Estrutura do Projeto
 
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
 ```
+src/
+├── lib/                    # Componentes e utilitários
+│   ├── api.ts             # Cliente da API
+│   ├── stores.ts          # Stores do Svelte
+│   ├── AuthForm.svelte    # Formulário de autenticação
+│   ├── Navigation.svelte  # Navegação
+│   ├── UrlShortener.svelte # Encurtador de URLs
+│   └── UrlList.svelte     # Lista de URLs
+├── pages/                 # Páginas da aplicação
+│   ├── Login.svelte       # Página de login
+│   ├── Register.svelte    # Página de registro
+│   └── Dashboard.svelte   # Dashboard do usuário
+├── App.svelte            # Componente principal
+├── main.ts               # Ponto de entrada
+└── app.css              # Estilos globais
+```
+
+## 🔧 Configuração
+
+### Variáveis de Ambiente
+
+- `VITE_API_URL`: URL da API backend
+- `VITE_APP_NAME`: Nome da aplicação
+- `VITE_APP_VERSION`: Versão da aplicação
+
+### Proxy de Desenvolvimento
+
+O Vite está configurado para fazer proxy das requisições `/api` para o backend:
+
+```typescript
+server: {
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+    }
+  }
+}
+```
+
+## 🎨 Design System
+
+### Cores
+
+- **Primária**: `#3b82f6` (Azul)
+- **Secundária**: `#667eea` (Gradiente)
+- **Sucesso**: `#10b981` (Verde)
+- **Erro**: `#dc2626` (Vermelho)
+- **Neutro**: `#6b7280` (Cinza)
+
+### Tipografia
+
+- **Família**: System fonts (San Francisco, Segoe UI, etc.)
+- **Tamanhos**: Escala responsiva
+- **Pesos**: 400 (normal), 500 (medium), 600 (semibold), 700 (bold)
+
+## 📱 Responsividade
+
+O frontend é totalmente responsivo e funciona em:
+
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: < 768px
+
+## 🔐 Autenticação
+
+O sistema de autenticação inclui:
+
+- **Login** com email e senha
+- **Registro** de novos usuários
+- **JWT** para sessões persistentes
+- **Proteção de rotas** para páginas privadas
+- **Logout** automático em caso de erro 401
+
+## 📊 Funcionalidades
+
+### Encurtamento de URLs
+
+- **URLs anônimas**: Sem necessidade de cadastro
+- **URLs autenticadas**: Vinculadas ao usuário
+- **Validação de URLs**: Verificação de formato
+- **QR Code**: Geração opcional de QR codes
+- **Cópia para clipboard**: Funcionalidade nativa
+
+### Dashboard
+
+- **Lista de URLs**: Paginação e filtros
+- **Estatísticas**: Número de cliques por URL
+- **Ações**: Editar e excluir URLs
+- **Histórico**: Data de criação e última atualização
+
+## 🚀 Deploy
+
+### Build para Produção
+
+```bash
+npm run build
+```
+
+### Servir Build
+
+```bash
+npm run preview
+```
+
+### Docker
+
+```bash
+# Build da imagem
+docker build -t encurtaador-frontend .
+
+# Executar container
+docker run -p 5173:5173 encurtaador-frontend
+```
+
+## 🔧 Desenvolvimento
+
+### Scripts Disponíveis
+
+- `npm run dev`: Servidor de desenvolvimento
+- `npm run build`: Build para produção
+- `npm run preview`: Preview do build
+- `npm run check`: Verificação de tipos
+
+### Estrutura de Componentes
+
+Cada componente segue o padrão Svelte 5:
+
+```svelte
+<script lang="ts">
+  // Lógica do componente
+</script>
+
+<!-- Template HTML -->
+
+<style>
+  /* Estilos scoped */
+</style>
+```
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT.
