@@ -33,9 +33,8 @@
 
       try {
         const response = await urlAPI.createUrl(value, qrCode);
-        console.log('API Response:', response);
 
-        console.log('createdUrl.qrCode:', response.qrCode);
+
         createdUrl = response;
         shortUrl = response.shortUrl;
 

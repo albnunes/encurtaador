@@ -19,7 +19,7 @@
 
     try {
       const response = await urlAPI.getUserUrls(page, limit);
-      console.log('response', response);
+
       urls = response.urls;
       total = response.total;
       totalPages = Math.ceil(total / limit);

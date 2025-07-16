@@ -12,12 +12,10 @@ const api = axios.create({
 // Interceptor para adicionar token de autenticação
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('auth_token');
-    console.log(token);
+
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-        console.log('Token adicionado à requisição:', config.url);
     } else {
-        console.log('Nenhum token encontrado para requisição:', config.url);
     }
     return config;
 });
