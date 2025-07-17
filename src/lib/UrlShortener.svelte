@@ -3,15 +3,17 @@
   import { urlAPI } from './api';
   import type { UrlResponse } from './api';
   import QrCodeDisplay from './QRCodeDisplay.svelte';
+  import { authStore } from './stores';
 
   export let placeholder = 'Cole seu link aqui...';
   export let value = '';
   export let error = '';
-  
+
   let shortUrl = '';
   let loading = false;
   let qrCode = true;
   let createdUrl: UrlResponse | null = null;
+  let isAuthenticated = false;
 
   const dispatch = createEventDispatcher<{
     input: string;
@@ -33,7 +35,6 @@
 
       try {
         const response = await urlAPI.createUrl(value, qrCode);
-
 
         createdUrl = response;
         shortUrl = response.shortUrl;
@@ -73,6 +74,14 @@
       minute: '2-digit',
     });
   }
+
+  // Inicializar o store de autenticação
+  authStore.initialize();
+
+  // Subscrever ao store de autenticação
+  authStore.subscribe((state: any) => {
+    isAuthenticated = state.isAuthenticated;
+  });
 </script>
 
 <div class="url-shortener">
@@ -135,17 +144,17 @@
           </div>
         </div>
 
-        <div class="info-row">
-          <span class="label">Criada em:</span>
-          <span>{formatDate(createdUrl.createdAt)}</span>
-        </div>
+        {#if isAuthenticated}
+          <div class="info-row">
+            <span class="label">Criada em:</span>
+            <span>{formatDate(createdUrl.createdAt)}</span>
+          </div>
 
-        <div class="info-row">
-          <span class="label">Clicks:</span>
-          <span>{createdUrl.clicks}</span>
-        </div>
-
-
+          <div class="info-row">
+            <span class="label">Clicks:</span>
+            <span>{createdUrl.clicks}</span>
+          </div>
+        {/if}
       </div>
 
       {#if createdUrl.qrCode}
@@ -158,7 +167,6 @@
             {shortUrl}
           />
         </div>
-
       {/if}
     </div>
   {/if}
